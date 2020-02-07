@@ -77,37 +77,22 @@ public class main extends JavaPlugin implements Listener {
                 return true;
             }
         	if (args.length == 0) {
-        		sender.sendMessage("[CallAdmin] Please specify a player!");
-        	}
-        	if (args.length == 1) {
         		sender.sendMessage("[CallAdmin] Please specify a reason!");
         	}
-        	if (args.length > 1) {     
+        	if (args.length == 1) {     
         	Player player = Bukkit.getPlayer(sender.getName());        	
-            Player target = Bukkit.getPlayer(args[0]);
             String reason = "";
             for(int i = 1; i < args.length; i++){
                 String arg = args[i] + " "; 
                 reason = reason + arg;
             }
-            if(target == null) {
-            	sender.sendMessage("[CallAdmin] Player not found!");
-            	return true;
             }
             String webhookurl = config.getString("Webhook URL");
             if (webhookurl.length() == 0) {
             	sender.sendMessage("[CallAdmin] Discord Webhook URL is not set! Please edit your config.yml or contact the server administrator.");
             	return true;
             }
-            if(player == target) {
-            	sender.sendMessage("[CallAdmin] You can't report yourself!");
-            	return true;
-            }
-            if(target.hasPermission("calladmin.exempt")) {
-            	sender.sendMessage("[CallAdmin] You can't report this player!");
-            	return true;
-            }
-            sender.sendMessage("[CallAdmin] Reported a player!");
+            sender.sendMessage("[CallAdmin] Sent!");
             Random id = new Random();
             int ID = (id.nextInt(999)+1);
             String ReportID = Integer.toString(ID);
@@ -138,7 +123,6 @@ public class main extends JavaPlugin implements Listener {
                     .setColor(Color.RED)
                     .addField("Reason", reason, true)
             .addField("Reporter", player.getName(), true)
-            .addField("Target", target.getName(), false)
             .setThumbnail("")
             .setFooter("", "")
             .setImage("")
