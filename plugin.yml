@@ -6,13 +6,11 @@ prefix:
 commands:
   calladmin:
     description: Report a player or an issue
-    usage: /calladmin <player> <reason>
+    usage: /calladmin <reason>
   cainfo:
     description: Display the plugin info
     usage: /cainfo
-  caresolve:
-    description: Resolve the report
-    usage: /caresolve <player> <reason>      
+  
 permissions:
   calladmin.exempt:
     description: Protects players from being reported
